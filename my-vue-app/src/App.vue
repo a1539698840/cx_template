@@ -1,20 +1,19 @@
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import home from './pages/home.vue'
+import home from './pages/home.vue';
+import login from './pages/login.vue'
+import {computed} from 'vue'
+import {useUserStore} from './store/user.ts'
+  const userStore = useUserStore()
+  const isLogin = computed(() => userStore.isLogin)
 </script>
 
 <template>
-  <home></home>
+  <login v-if="!isLogin"></login>
+  <home v-else></home>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import '@/assets/style/base.scss';
 </style>
